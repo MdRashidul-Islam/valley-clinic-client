@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 import login from "../../assets/img/2853458.jpg";
 import useAuth from "../../hooks/useAuth";
-import Navigation from "../components/common/Navigation";
 import Spinner from "../components/custom/Spinner";
 
 const Register = () => {
@@ -33,7 +32,6 @@ const Register = () => {
   };
   return (
     <RegisterPageStyled>
-      <Navigation />
       <div className="register">
         <div className="left">
           <div className="form_section">

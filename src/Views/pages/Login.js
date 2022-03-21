@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import login from "../../assets/img/2853458.jpg";
 import google from "../../assets/img/Group 573.png";
-
 import useAuth from "../../hooks/useAuth";
-import Navigation from "../components/common/Navigation";
 
 const Login = () => {
   const { signWithEmail, googleSignIn } = useAuth();
@@ -35,7 +33,6 @@ const Login = () => {
 
   return (
     <LoginPageStyled>
-      <Navigation />
       <div className="login">
         <div className="left">
           <div className="form_section">

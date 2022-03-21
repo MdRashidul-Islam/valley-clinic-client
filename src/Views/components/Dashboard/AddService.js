@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const AddService = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    fetch("https://morning-garden-34433.herokuapp.com/availableAppointments", {
+    fetch("http://localhost:4000/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -34,14 +34,15 @@ const AddService = () => {
           {...register("serviceName", { required: true })}
           placeholder="SERVICE NAME"
         />
+        <input {...register("img", { required: true })} placeholder="IMG URL" />
         <input
           {...register("schedule", { required: true })}
-          placeholder="SCHEDULE/TIME/ 3:00PM - 4:00PM"
+          placeholder="SCHEDULE{ex: sat, sun, mon}"
         />
 
         <input
-          {...register("space", { required: true })}
-          placeholder="AVAILABLE SPACE"
+          {...register("time", { required: true })}
+          placeholder="TIME/ 3:00PM - 4:00PM"
         />
 
         <input
@@ -80,6 +81,17 @@ const AddServiceStyled = styled.div`
       margin-bottom: 10px;
       border-radius: 3px;
       border: none;
+    }
+    button {
+      height: 40px;
+      border: 1px solid #00a187;
+      color: #00a187;
+      font-weight: bold;
+      &:hover {
+        background-color: #00a187;
+        color: white;
+        transition: all 0.3s;
+      }
     }
   }
 `;

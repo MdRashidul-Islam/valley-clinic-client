@@ -10,7 +10,7 @@ const MakeAdmin = () => {
   const onSubmit = (data) => {
     const email = data.email;
     const user = { email };
-    fetch("https://morning-garden-34433.herokuapp.com/users/admin", {
+    fetch("http://localhost:4000/users/admin", {
       method: "PUT",
       headers: {
         authorization: `Bearer ${token}`,
@@ -68,8 +68,17 @@ const MakeAdminStyled = styled.div`
       border: none;
       border-radius: 3px;
     }
-    Button {
+    button {
+      height: 40px;
+      border: 1px solid #00a187;
+      color: #00a187;
+      font-weight: bold;
       width: 100%;
+      &:hover {
+        background-color: #00a187;
+        color: white;
+        transition: all 0.3s;
+      }
     }
   }
 `;

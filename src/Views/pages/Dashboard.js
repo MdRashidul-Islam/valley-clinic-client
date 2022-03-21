@@ -31,7 +31,6 @@ function Dashboard(props) {
 
   const { user, admin, logOut } = useAuth();
   const location = useLocation();
-  console.log(location);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -68,12 +67,6 @@ function Dashboard(props) {
 
         {admin && (
           <Box>
-            <Link to="patients">
-              <div className="nav_item">
-                <FontAwesomeIcon className="icon" icon={faUserAlt} />
-                <button>Patients</button>
-              </div>
-            </Link>
             <Link to="addDoctor">
               <div className="nav_item">
                 <FontAwesomeIcon className="icon" icon={faPlus} />
@@ -90,6 +83,12 @@ function Dashboard(props) {
               <div className="nav_item">
                 <FontAwesomeIcon className="icon" icon={faUserShield} />
                 <button>Make Admin</button>
+              </div>
+            </Link>
+            <Link to="pendingReviews">
+              <div className="nav_item">
+                <FontAwesomeIcon className="icon" icon={faUserShield} />
+                <button>Pending Review</button>
               </div>
             </Link>
             <Link to="manageAppointment">

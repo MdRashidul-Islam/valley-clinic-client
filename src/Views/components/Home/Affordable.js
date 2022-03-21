@@ -59,7 +59,16 @@ const AffordableStyled = styled.div`
         font-weight: 600;
       }
       button {
-        padding: 10px 24px;
+        height: 40px;
+        border: 1px solid #00a187;
+        color: #00a187;
+        font-weight: bold;
+        width: 100%;
+        &:hover {
+          background-color: #00a187;
+          color: white;
+          transition: all 0.3s;
+        }
       }
       @media (max-width: 700px) {
         width: 100%;

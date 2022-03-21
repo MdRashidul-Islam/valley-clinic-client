@@ -51,6 +51,8 @@ const MissionStyled = styled.div`
 
   @media (max-width: 700px) {
     height: 100%;
+    padding-top: 200px;
+    padding-bottom: 200px;
   }
   .mission {
     height: 600px;
@@ -71,6 +73,9 @@ const MissionStyled = styled.div`
       padding: 20px;
       h1 {
         color: #00a187;
+        @media (max-width: 700px) {
+          font-size: 30px;
+        }
       }
 
       p {

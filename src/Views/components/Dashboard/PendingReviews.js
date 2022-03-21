@@ -1,5 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
+  Button,
   IconButton,
   Table,
   TableBody,
@@ -13,14 +14,14 @@ import Paper from "@mui/material/Paper";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const Patients = () => {
-  const [bookedAppointments, setBookedAppointments] = useState([]);
+const PendingReviews = () => {
+  const [reviews, setReviews] = useState([]);
   const [reload, setReload] = useState(true);
 
   useEffect(() => {
-    fetch("https://morning-garden-34433.herokuapp.com/allAppointments")
+    fetch("http://localhost:4000/reviews")
       .then((res) => res.json())
-      .then((data) => setBookedAppointments(data));
+      .then((data) => setReviews(data));
   }, [reload]);
 
   //Delete order product
@@ -29,27 +30,27 @@ const Patients = () => {
       title: "Are you sure want to delete ?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#7cd7a6",
-      cancelButtonColor: "#f63e7b",
-      confirmButtonText: "DELETE",
+      confirmButtonColor: "#f63e7b",
+      cancelButtonColor: "#14D1CA",
+      confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `https://morning-garden-34433.herokuapp.com/appointments/${id}`;
+        const url = `http://localhost:4000/reviews/${id}`;
         fetch(url, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              const remainingProduct = bookedAppointments.filter(
+              const remainingProduct = reviews.filter(
                 (prod) => prod._id !== id
               );
-              setBookedAppointments(remainingProduct);
+              setReviews(remainingProduct);
               Swal.fire({
                 icon: "success",
-                title: `Delete Successfully`,
+                title: `Deleted Successfully`,
                 showConfirmButton: false,
-                timer: 800,
+                timer: 1000,
               });
             }
           });
@@ -62,26 +63,23 @@ const Patients = () => {
       title: "Are you sure want to Confirm?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#7cd7a6",
+      confirmButtonColor: "#13D0D4",
       cancelButtonColor: "#f63e7b",
-      confirmButtonText: "DELETE",
+      confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://morning-garden-34433.herokuapp.com/allAppointments/${id}`,
-          {
-            method: "PUT",
-          }
-        )
+        fetch(`http://localhost:4000/reviews/${id}`, {
+          method: "PUT",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount === 1) {
               setReload(!reload);
               Swal.fire({
                 icon: "success",
-                title: "Service Confirm Successfully",
+                text: "Appointment Confirmed Successfully",
                 showConfirmButton: false,
-                timer: 800,
+                timer: 1000,
               });
             }
           });
@@ -98,63 +96,54 @@ const Patients = () => {
               sx={{ fontWeight: "bold", color: "#989595" }}
               align="center"
             >
-              Sr.No
+              IMG
+            </TableCell>
+            <TableCell
+              sx={{ fontWeight: "bold", color: "#989595" }}
+              align="center"
+            >
+              OCCUPATION
             </TableCell>
 
             <TableCell
               sx={{ fontWeight: "bold", color: "#989595" }}
               align="center"
             >
-              Name
+              MESSAGE
             </TableCell>
 
             <TableCell
               sx={{ fontWeight: "bold", color: "#989595" }}
               align="center"
             >
-              Email
-            </TableCell>
-
-            <TableCell
-              sx={{ fontWeight: "bold", color: "#989595" }}
-              align="center"
-            >
-              Contact
+              Action
             </TableCell>
             <TableCell
               sx={{ fontWeight: "bold", color: "#989595" }}
               align="center"
             >
-              Gender
-            </TableCell>
-            <TableCell
-              sx={{ fontWeight: "bold", color: "#989595" }}
-              align="center"
-            >
-              Age
-            </TableCell>
-            <TableCell
-              sx={{ fontWeight: "bold", color: "#989595" }}
-              align="center"
-            >
-              Address
-            </TableCell>
-            <TableCell
-              sx={{ fontWeight: "bold", color: "#989595" }}
-              align="center"
-            >
-              Delete
+              DELETE
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {bookedAppointments?.map((appointment, index) => (
+          {reviews?.map((review, index) => (
             <TableRow
-              key={appointment._id}
+              key={review._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row" align="center">
-                {index + 1}
+              <TableCell
+                component="th"
+                sx={{ color: "#666666" }}
+                scope="row"
+                align="center"
+              >
+                <img
+                  height="60px"
+                  width="60px"
+                  src={`data:image/png;base64,${review?.image}`}
+                  alt=""
+                />
               </TableCell>
               <TableCell
                 component="th"
@@ -162,7 +151,7 @@ const Patients = () => {
                 scope="row"
                 align="center"
               >
-                {appointment?.patientName}
+                {review?.occupation}
               </TableCell>
               <TableCell
                 component="th"
@@ -170,40 +159,42 @@ const Patients = () => {
                 scope="row"
                 align="center"
               >
-                {appointment?.email}
-              </TableCell>
-              <TableCell
-                component="th"
-                sx={{ color: "#666666" }}
-                scope="row"
-                align="center"
-              >
-                {" "}
-                {appointment?.phone}
-              </TableCell>
-              <TableCell
-                component="th"
-                sx={{ color: "#666666" }}
-                scope="row"
-                align="center"
-              >
-                afaf
-              </TableCell>
-              <TableCell
-                component="th"
-                sx={{ color: "#666666" }}
-                scope="row"
-                align="center"
-              >
-                sfsaewr
+                {review?.message}
               </TableCell>
 
               <TableCell align="center" sx={{ color: "black" }}>
-                sfnm
+                {review.status ? (
+                  <button
+                    size="small"
+                    disabled
+                    sx={{
+                      backgroundColor: "none",
+                      color: "#7cd7a6",
+                      padding: "3px",
+                    }}
+                  >
+                    {review?.status}
+                  </button>
+                ) : (
+                  <Tooltip title="Click For Confirm" placement="top">
+                    <Button
+                      onClick={() => handleConfirm(review._id)}
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        backgroundColor: "none",
+                        border: "1px solid #F63E7B",
+                        color: "gray",
+                      }}
+                    >
+                      Pending
+                    </Button>
+                  </Tooltip>
+                )}
               </TableCell>
               <TableCell align="center">
                 <Tooltip title="Click For Delete" placement="top">
-                  <IconButton onClick={() => handleDelete(appointment._id)}>
+                  <IconButton onClick={() => handleDelete(review._id)}>
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>
@@ -216,4 +207,4 @@ const Patients = () => {
   );
 };
 
-export default Patients;
+export default PendingReviews;

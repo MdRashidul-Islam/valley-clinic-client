@@ -2,12 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import useAuth from "../../../hooks/useAuth";
-import PrivateRoute from "../../../routes/PrivateRoute";
-import Login from "../../pages/Login";
 import BookingModal from "./BookingModal";
 
 const Service = ({ service }) => {
   const { _id, img, price, time, schedule, title } = service;
+
   const { user } = useAuth();
   const [openBooking, setBookingOpen] = React.useState(false);
   const handleBookingOpen = () => setBookingOpen(true);
@@ -22,9 +21,9 @@ const Service = ({ service }) => {
           <h5>Schedule: {schedule}</h5>
           <h4>Price: $ {price}</h4>
           <br />
-          <button onClick={handleBookingOpen} to="/">
-            Make Appointment
-          </button>
+          <Link to={`/service/${_id}`}>
+            <button>Make Appointment</button>
+          </Link>
         </div>
       </div>
 

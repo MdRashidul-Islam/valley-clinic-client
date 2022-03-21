@@ -21,8 +21,8 @@ const DoctorStyled = styled.div`
     width: 240px;
     border-right: 1px solid lightgray;
     img {
-      /* height: 300px; */
-      width: 100%;
+      width: 250px;
+      height: 250px;
       object-fit: contain;
     }
     .info {

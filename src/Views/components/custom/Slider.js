@@ -24,17 +24,6 @@ const Slider = () => {
         </div>
 
         <div>
-          <img src="https://www.uhlbd.com/backend/web/slider_images/16256576282.jpg" />
-        </div>
-
-        <div>
-          <img src="https://www.uhlbd.com/backend/web/slider_images/16256576293.jpg" />
-        </div>
-
-        <div>
-          <img src="https://www.uhlbd.com/backend/web/slider_images/16256576294.jpg" />
-        </div>
-        <div>
           <img src="https://www.uhlbd.com/backend/web/slider_images/16256576285.jpg" />
         </div>
         <div>
@@ -55,9 +44,7 @@ const Slider = () => {
         <div>
           <img src="https://www.uhlbd.com/backend/web/slider_images/162565769311.jpg" />
         </div>
-        <div>
-          <img src="https://www.uhlbd.com/backend/web/slider_images/162565769312.jpg" />
-        </div>
+
         <div>
           <img src="https://static.wixstatic.com/media/60aa73_f11efc87a7a14871a9780f5b7aecd823~mv2.jpg/v1/fill/w_1349,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/60aa73_f11efc87a7a14871a9780f5b7aecd823~mv2.jpg" />
         </div>

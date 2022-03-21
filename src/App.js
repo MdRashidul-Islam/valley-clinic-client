@@ -1,28 +1,41 @@
 import { Route, Routes } from "react-router-dom";
 import AuthProvider from "./contexts/AuthProvider";
+import AdminRoute from "./routes/AdminRoute";
 import PrivateRoute from "./routes/PrivateRoute";
+import Navigation from "./Views/components/common/Navigation";
+import AddDoctor from "./Views/components/Dashboard/AddDoctor";
+import AddService from "./Views/components/Dashboard/AddService";
+import Appointments from "./Views/components/Dashboard/Appointments";
+import MakeAdmin from "./Views/components/Dashboard/MakeAdmin";
+import ManageAllService from "./Views/components/Dashboard/ManageAllService";
+import ManageAppointment from "./Views/components/Dashboard/ManageAppointment";
+import Payment from "./Views/components/Dashboard/Payment";
+import PendingReviews from "./Views/components/Dashboard/PendingReviews";
+import Review from "./Views/components/Dashboard/Review";
+import WelcomePage from "./Views/components/Dashboard/WelcomePage";
+import ServiceDetails from "./Views/components/Home/ServiceDetails";
+import Dashboard from "./Views/pages/Dashboard";
 import HomePage from "./Views/pages/HomePage";
 import Login from "./Views/pages/Login";
 import Register from "./Views/pages/Register";
-import Dashboard from "./Views/pages/Dashboard";
-import WelcomePage from "./Views/components/Dashboard/WelcomePage";
-import AdminRoute from "./routes/AdminRoute";
-import MakeAdmin from "./Views/components/Dashboard/MakeAdmin";
-import AddDoctor from "./Views/components/Dashboard/AddDoctor";
-import AddService from "./Views/components/Dashboard/AddService";
-import Review from "./Views/components/Dashboard/Review";
-import ManageAppointment from "./Views/components/Dashboard/ManageAppointment";
-import ManageAllService from "./Views/components/Dashboard/ManageAllService";
-import Payment from "./Views/components/Dashboard/Payment";
 
 function App() {
   return (
     <div>
       <AuthProvider>
+        <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route
+            path="/service/:serviceId"
+            element={
+              <PrivateRoute>
+                <ServiceDetails />
+              </PrivateRoute>
+            }
+          />
 
           <Route
             path="dashboard"
@@ -34,7 +47,9 @@ function App() {
           >
             <Route index element={<WelcomePage />} />
 
-            {/* <Route
+            <Route path="appointments" element={<Appointments />} />
+
+            <Route
               path="makeAdmin"
               element={
                 <AdminRoute>
@@ -51,7 +66,6 @@ function App() {
                 </AdminRoute>
               }
             />
-
             <Route
               path="addService"
               element={
@@ -87,8 +101,16 @@ function App() {
                 </AdminRoute>
               }
             />
+            <Route
+              path="pendingReviews"
+              element={
+                <AdminRoute>
+                  <PendingReviews />
+                </AdminRoute>
+              }
+            />
 
-            <Route path="payment/:id" element={<Payment />} /> */}
+            <Route path="payment/:id" element={<Payment />} />
           </Route>
         </Routes>
       </AuthProvider>

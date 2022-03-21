@@ -1,6 +1,5 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import Spinner from "../custom/Spinner";
@@ -16,7 +15,7 @@ const CheckoutForm = ({ bookedAppointment }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("https://morning-garden-34433.herokuapp.com/create-payment-intent", {
+    fetch("http://localhost:4000/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -111,7 +110,7 @@ const CheckoutForm = ({ bookedAppointment }) => {
         last4: paymentMethod.card.last4,
         transaction: paymentIntent.client_secret.slice("_secret")[0],
       };
-      const url = `https://morning-garden-34433.herokuapp.com/appointment/${_id}`;
+      const url = `http://localhost:4000/appPayments/${_id}`;
       fetch(url, {
         method: "PUT",
         headers: {

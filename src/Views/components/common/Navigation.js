@@ -16,8 +16,8 @@ const Navigation = () => {
         </Link>
 
         <div className="header_search">
-          <input type="text" className="header_searchIn" />
-          <SearchIcon className="header_searchIcon" />
+          {/* <input type="text" className="header_searchIn" />
+          <SearchIcon className="header_searchIcon" /> */}
         </div>
         <div className="header_nav">
           <Link to={!user.email && "/login"}>
@@ -30,20 +30,16 @@ const Navigation = () => {
               </span>
             </div>
           </Link>
-          <Link to="/">
+          {/* <Link to="/">
             <div className="header_option">
               <span className="header_optionLineOne">Your</span>
               <span className="header_optionLineTwo">Appointments</span>
             </div>
-          </Link>
-          <div className="header_option">
-            <span className="header_optionLineOne">Your</span>
-            <span className="header_optionLineTwo">Dashboard</span>
-          </div>
-          <Link to="/orderReview">
-            <div className="header_optionBasket">
-              <ShoppingBasketIcon />
-              <span className="header_optionLineTwo header_basketCount"></span>
+          </Link> */}
+          <Link to="/dashboard">
+            <div className="header_option">
+              <span className="header_optionLineOne">Your</span>
+              <span className="header_optionLineTwo">Dashboard</span>
             </div>
           </Link>
         </div>

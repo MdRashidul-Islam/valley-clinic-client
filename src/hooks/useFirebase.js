@@ -4,6 +4,7 @@ import {
   getIdToken,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -39,7 +40,7 @@ const useFirebase = () => {
 
         const newUser = { email, displayName: name };
         setUser(newUser);
-
+        verifyEmail();
         saveUser(email, name, "POST");
 
         updateProfile(auth.currentUser, {
@@ -61,6 +62,12 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
   //---------register User end-----------------//
+
+  const verifyEmail = () => {
+    sendEmailVerification(auth.currentUser).then((res) => {
+      console.log(res);
+    });
+  };
 
   //-------------login with email password start--------------//
   const signWithEmail = (email, password, location, navigate) => {
@@ -151,7 +158,7 @@ const useFirebase = () => {
   //---------------Auth state start---------------//
 
   useEffect(() => {
-    fetch(`https://morning-garden-34433.herokuapp.com/users/${user.email}`)
+    fetch(`http://localhost:4000/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);
@@ -159,7 +166,8 @@ const useFirebase = () => {
   // save user state
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
-    fetch("https://morning-garden-34433.herokuapp.com/users", {
+    console.log(user);
+    fetch("http://localhost:4000/users", {
       method: method,
       headers: {
         "content-type": "application/json",

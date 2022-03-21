@@ -1,6 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
-  Button,
   IconButton,
   Table,
   TableBody,
@@ -15,13 +14,14 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const ManageAllService = () => {
-  const [availableAppointments, setAvailableAppointments] = useState([]);
+  const [services, setServices] = useState([]);
   const [reload, setReload] = useState(true);
+  console.log(services);
 
   useEffect(() => {
-    fetch("https://morning-garden-34433.herokuapp.com/availableAppointments")
+    fetch("http://localhost:4000/services")
       .then((res) => res.json())
-      .then((data) => setAvailableAppointments(data));
+      .then((data) => setServices(data.services));
   }, [reload]);
 
   //Delete order product
@@ -35,17 +35,17 @@ const ManageAllService = () => {
       confirmButtonText: "DELETE",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `https://morning-garden-34433.herokuapp.com/availableAppointments/${id}`;
+        const url = `http://localhost:4000/service/${id}`;
         fetch(url, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              const remainingService = availableAppointments.filter(
+              const remainingService = services.filter(
                 (prod) => prod._id !== id
               );
-              setAvailableAppointments(remainingService);
+              setServices(remainingService);
               Swal.fire({
                 icon: "success",
                 title: `Deleted Successfully`,
@@ -105,7 +105,7 @@ const ManageAllService = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {availableAppointments?.map((appointment, index) => (
+          {services?.map((appointment, index) => (
             <TableRow
               key={appointment._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -127,7 +127,7 @@ const ManageAllService = () => {
                 scope="row"
                 align="center"
               >
-                {appointment?.serviceName}
+                {appointment?.title}
               </TableCell>
               <TableCell
                 component="th"
@@ -143,7 +143,7 @@ const ManageAllService = () => {
                 scope="row"
                 align="center"
               >
-                {appointment?.availableSpace}
+                {appointment?.time}
               </TableCell>
 
               <TableCell align="center">

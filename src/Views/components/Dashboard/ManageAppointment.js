@@ -19,7 +19,7 @@ const ManageAppointment = () => {
   const [reload, setReload] = useState(true);
 
   useEffect(() => {
-    fetch("https://morning-garden-34433.herokuapp.com/allAppointments")
+    fetch("http://localhost:4000/appointments")
       .then((res) => res.json())
       .then((data) => setBookedAppointments(data));
   }, [reload]);
@@ -35,7 +35,7 @@ const ManageAppointment = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `https://morning-garden-34433.herokuapp.com/allAppointments/${id}`;
+        const url = `http://localhost:4000/appointments/${id}`;
         fetch(url, {
           method: "DELETE",
         })
@@ -68,12 +68,9 @@ const ManageAppointment = () => {
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://morning-garden-34433.herokuapp.com/allAppointments/${id}`,
-          {
-            method: "PUT",
-          }
-        )
+        fetch(`http://localhost:4000/appointments/${id}`, {
+          method: "PUT",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount === 1) {
@@ -169,7 +166,7 @@ const ManageAppointment = () => {
                 scope="row"
                 align="center"
               >
-                {appointment?.schedule}
+                {appointment?.time}
               </TableCell>
               <TableCell
                 component="th"
@@ -177,7 +174,7 @@ const ManageAppointment = () => {
                 scope="row"
                 align="center"
               >
-                {appointment?.patientName}
+                {appointment?.title}
               </TableCell>
               <TableCell
                 component="th"
@@ -185,7 +182,7 @@ const ManageAppointment = () => {
                 scope="row"
                 align="center"
               >
-                {appointment?.phone}
+                {appointment?.number}
               </TableCell>
               <TableCell
                 component="th"
@@ -242,9 +239,8 @@ const ManageAppointment = () => {
                         border: "1px solid #F63E7B",
                         color: "gray",
                       }}
-                      onClick={() => handleConfirm(appointment._id)}
                     >
-                      NOT-VISITED
+                      Pending
                     </Button>
                   </Tooltip>
                 )}

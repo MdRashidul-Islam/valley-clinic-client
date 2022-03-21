@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const AddDoctor = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    fetch("https://morning-garden-34433.herokuapp.com/doctors", {
+    fetch("http://localhost:4000/doctors", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -15,7 +15,7 @@ const AddDoctor = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.modifiedCount) {
+        if (data.insertedId) {
           Swal.fire({
             position: "center",
             icon: "success",
@@ -41,12 +41,6 @@ const AddDoctor = () => {
         <input
           {...register("img", { required: true })}
           placeholder="DOCTORS IMAGE URL"
-        />
-
-        <input
-          type="number"
-          {...register("number", { required: true })}
-          placeholder="DOCTORS NUMBER"
         />
 
         <textarea
@@ -84,6 +78,17 @@ const AddDoctorStyled = styled.div`
       margin-bottom: 10px;
       border-radius: 3px;
       border: none;
+    }
+    button {
+      height: 40px;
+      border: 1px solid #00a187;
+      color: #00a187;
+      font-weight: bold;
+      &:hover {
+        background-color: #00a187;
+        color: white;
+        transition: all 0.3s;
+      }
     }
   }
 `;

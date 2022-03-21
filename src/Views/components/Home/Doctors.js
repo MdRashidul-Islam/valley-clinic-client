@@ -1,14 +1,23 @@
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Doctor from "./Doctor";
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
-import Department from "./Department";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { MainLayout } from "../../../styles/Layout";
+import Doctor from "./Doctor";
 
 const Doctors = () => {
+  const [doctors, setDoctors] = useState([]);
+
+  console.log(doctors);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/doctors")
+      .then((res) => res.json())
+      .then((data) => setDoctors(data));
+  }, []);
+
   return (
     <DoctorsStyled>
       <MainLayout>
@@ -55,76 +64,16 @@ const Doctors = () => {
               modules={[Pagination]}
               className="mySwiper"
             >
-              <SwiperSlide>
-                <Doctor
-                  img={
-                    "https://www.bdspecializedhospital.com/storage/app/public/media/1557730926.jpg"
-                  }
-                  name={"DR. RASHIDUL ISLAM"}
-                  education={
-                    " MBBS, DEM Diploma in Endocrinology & Metabolism, MD Endocrinology & Metabolism"
-                  }
-                  specialists={
-                    "He is serving as a Senior Consultant Surgeon in United Hospital since   mid 2015 till date"
-                  }
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Doctor
-                  img={
-                    "https://www.bdspecializedhospital.com/storage/app/public/media/1557730926.jpg"
-                  }
-                  name={"DR. RASHIDUL ISLAM"}
-                  education={
-                    " MBBS, DEM Diploma in Endocrinology & Metabolism, MD Endocrinology & Metabolism"
-                  }
-                  specialists={
-                    "He is serving as a Senior Consultant Surgeon in United Hospital since   mid 2015 till date"
-                  }
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Doctor
-                  img={
-                    "https://www.bdspecializedhospital.com/storage/app/public/media/1557730926.jpg"
-                  }
-                  name={"DR. RASHIDUL ISLAM"}
-                  education={
-                    " MBBS, DEM Diploma in Endocrinology & Metabolism, MD Endocrinology & Metabolism"
-                  }
-                  specialists={
-                    "He is serving as a Senior Consultant Surgeon in United Hospital since   mid 2015 till date"
-                  }
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Doctor
-                  img={
-                    "https://www.bdspecializedhospital.com/storage/app/public/media/1557730926.jpg"
-                  }
-                  name={"DR. RASHIDUL ISLAM"}
-                  education={
-                    " MBBS, DEM Diploma in Endocrinology & Metabolism, MD Endocrinology & Metabolism"
-                  }
-                  specialists={
-                    "He is serving as a Senior Consultant Surgeon in United Hospital since   mid 2015 till date"
-                  }
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Doctor
-                  img={
-                    "https://www.bdspecializedhospital.com/storage/app/public/media/1557730926.jpg"
-                  }
-                  name={"DR. RASHIDUL ISLAM"}
-                  education={
-                    " MBBS, DEM Diploma in Endocrinology & Metabolism, MD Endocrinology & Metabolism"
-                  }
-                  specialists={
-                    "He is serving as a Senior Consultant Surgeon in United Hospital since   mid 2015 till date"
-                  }
-                />
-              </SwiperSlide>
+              {doctors?.map((dr) => (
+                <SwiperSlide key={dr._id}>
+                  <Doctor
+                    img={`${dr.img}`}
+                    name={`${dr.name}`}
+                    education={`${dr.qualification}`}
+                    specialists={`${dr.description?.slice(0, 100)}`}
+                  />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </div>
@@ -152,6 +101,18 @@ const DoctorsStyled = styled.div`
       p {
         font-size: 14px;
         text-align: justify;
+      }
+      button {
+        height: 40px;
+        border: 1px solid #00a187;
+        color: #00a187;
+        font-weight: bold;
+        width: 100%;
+        &:hover {
+          background-color: #00a187;
+          color: white;
+          transition: all 0.3s;
+        }
       }
       @media (max-width: 700px) {
         width: 100%;
