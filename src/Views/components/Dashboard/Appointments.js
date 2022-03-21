@@ -21,7 +21,9 @@ const Appointments = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/appointment/${user?.email}`)
+    fetch(
+      `https://mysterious-caverns-18186.herokuapp.com/appointment/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setBookedAppointments(data));
   }, [reload]);
@@ -37,7 +39,7 @@ const Appointments = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `http://localhost:4000/appointments/${id}`;
+        const url = `https://mysterious-caverns-18186.herokuapp.com/appointments/${id}`;
         fetch(url, {
           method: "DELETE",
         })

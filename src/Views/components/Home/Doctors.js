@@ -13,7 +13,7 @@ const Doctors = () => {
   console.log(doctors);
 
   useEffect(() => {
-    fetch("http://localhost:4000/doctors")
+    fetch("https://mysterious-caverns-18186.herokuapp.com/doctors")
       .then((res) => res.json())
       .then((data) => setDoctors(data));
   }, []);

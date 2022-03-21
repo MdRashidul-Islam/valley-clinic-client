@@ -27,7 +27,7 @@ const Review = () => {
     formData.append("image", image);
     formData.append("value", value);
 
-    fetch("http://localhost:4000/reviews", {
+    fetch("https://mysterious-caverns-18186.herokuapp.com/reviews", {
       method: "POST",
       body: formData,
     })

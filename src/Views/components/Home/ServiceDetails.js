@@ -19,7 +19,7 @@ const ServiceDetails = () => {
     data.title = service.title;
     data.price = service.price;
 
-    fetch("http://localhost:4000/appointments", {
+    fetch("https://mysterious-caverns-18186.herokuapp.com/appointments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/service/${serviceId}`)
+    fetch(`https://mysterious-caverns-18186.herokuapp.com/service/${serviceId}`)
       .then((res) => res.json())
       .then((data) => setService(data));
   }, [serviceId]);

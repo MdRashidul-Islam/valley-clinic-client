@@ -158,7 +158,7 @@ const useFirebase = () => {
   //---------------Auth state start---------------//
 
   useEffect(() => {
-    fetch(`http://localhost:4000/users/${user?.email}`)
+    fetch(`https://mysterious-caverns-18186.herokuapp.com/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);
@@ -167,7 +167,7 @@ const useFirebase = () => {
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
     console.log(user);
-    fetch("http://localhost:4000/users", {
+    fetch("https://mysterious-caverns-18186.herokuapp.com/users", {
       method: method,
       headers: {
         "content-type": "application/json",

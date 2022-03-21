@@ -19,7 +19,7 @@ const ManageAllService = () => {
   console.log(services);
 
   useEffect(() => {
-    fetch("http://localhost:4000/services")
+    fetch("https://mysterious-caverns-18186.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setServices(data.services));
   }, [reload]);
@@ -35,7 +35,7 @@ const ManageAllService = () => {
       confirmButtonText: "DELETE",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `http://localhost:4000/service/${id}`;
+        const url = `https://mysterious-caverns-18186.herokuapp.com/service/${id}`;
         fetch(url, {
           method: "DELETE",
         })

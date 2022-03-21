@@ -1,23 +1,21 @@
+import { Rating, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
 // import required modules
 import { Pagination } from "swiper";
-import { Rating, Typography } from "@mui/material";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 import Spinner from "../custom/Spinner";
 
 export default function Testimonial() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/reviews")
+    fetch("https://mysterious-caverns-18186.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

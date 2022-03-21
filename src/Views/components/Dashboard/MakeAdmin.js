@@ -10,7 +10,7 @@ const MakeAdmin = () => {
   const onSubmit = (data) => {
     const email = data.email;
     const user = { email };
-    fetch("http://localhost:4000/users/admin", {
+    fetch("https://mysterious-caverns-18186.herokuapp.com/users/admin", {
       method: "PUT",
       headers: {
         authorization: `Bearer ${token}`,

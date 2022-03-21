@@ -10,7 +10,9 @@ const Services = () => {
   const [pageCount, setPageCount] = useState(0);
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:4000/services?page=${page}&&size=${size}`)
+    fetch(
+      `https://mysterious-caverns-18186.herokuapp.com/services?page=${page}&&size=${size}`
+    )
       .then((res) => res.json())
       .then((data) => {
         const count = data.count;

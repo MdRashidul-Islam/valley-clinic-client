@@ -48,7 +48,7 @@ const BookingModal = ({ openBooking, handleBookingClose, service }) => {
 
     //send data to server
 
-    fetch("http://localhost:4000/appointments", {
+    fetch("https://mysterious-caverns-18186.herokuapp.com/appointments", {
       method: "POST",
       headers: {
         "content-type": "application/json",

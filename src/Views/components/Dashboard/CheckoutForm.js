@@ -15,13 +15,16 @@ const CheckoutForm = ({ bookedAppointment }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://mysterious-caverns-18186.herokuapp.com/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setClientSecret(data.clientSecret);
@@ -110,7 +113,7 @@ const CheckoutForm = ({ bookedAppointment }) => {
         last4: paymentMethod.card.last4,
         transaction: paymentIntent.client_secret.slice("_secret")[0],
       };
-      const url = `http://localhost:4000/appPayments/${_id}`;
+      const url = `https://mysterious-caverns-18186.herokuapp.com/appPayments/${_id}`;
       fetch(url, {
         method: "PUT",
         headers: {

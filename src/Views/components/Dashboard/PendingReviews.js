@@ -19,7 +19,7 @@ const PendingReviews = () => {
   const [reload, setReload] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4000/reviews")
+    fetch("https://mysterious-caverns-18186.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [reload]);
@@ -35,7 +35,7 @@ const PendingReviews = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `http://localhost:4000/reviews/${id}`;
+        const url = `https://mysterious-caverns-18186.herokuapp.com/reviews/${id}`;
         fetch(url, {
           method: "DELETE",
         })
@@ -68,7 +68,7 @@ const PendingReviews = () => {
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/reviews/${id}`, {
+        fetch(`https://mysterious-caverns-18186.herokuapp.com/reviews/${id}`, {
           method: "PUT",
         })
           .then((res) => res.json())

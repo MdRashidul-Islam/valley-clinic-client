@@ -16,7 +16,7 @@ const Payment = () => {
   const [bookedAppointment, setBookedAppointment] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:4000/appPayments/${id}`)
+    fetch(`https://mysterious-caverns-18186.herokuapp.com/appPayments/${id}`)
       .then((res) => res.json())
       .then((data) => setBookedAppointment(data));
   }, [id]);
