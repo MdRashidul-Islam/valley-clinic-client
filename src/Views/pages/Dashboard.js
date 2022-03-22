@@ -219,7 +219,7 @@ Dashboard.propTypes = {
 const NavStyled = styled.div`
   width: 100%;
   display: flex;
-  background: linear-gradient(90deg, #19d3ae, #0fcfec);
+  background: linear-gradient(90deg, #00a199, #00a183);
   min-height: 100vh;
   .nav {
     color: #878787;

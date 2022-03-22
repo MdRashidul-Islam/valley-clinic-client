@@ -27,6 +27,13 @@ const DepartmentStyled = styled.div`
     color: white;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    &:hover {
+      background-color: white;
+      color: #00a187;
+
+      transition: 0.4s ease-in-out;
+      border: 1px solid #00a187;
+    }
     .hr {
       width: 100px;
       margin: 0 auto;

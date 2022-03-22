@@ -6,6 +6,8 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MainLayout } from "../../../styles/Layout";
 import Doctor from "./Doctor";
+import Zoom from "react-reveal/Zoom";
+import Fade from "react-reveal/Fade";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -22,20 +24,25 @@ const Doctors = () => {
     <DoctorsStyled>
       <MainLayout>
         <div className="doctors">
-          <div className="left">
-            <h3>
-              OVER 100 MULTI-DISCIPLINARY <br /> SPECIALISTS
-            </h3>{" "}
-            <br />
-            <p>
-              State of the art technology and expertise combined with the
-              support of our friendly staff, we strive each day to be the top
-              healthcare provider, not only in Bangladesh but within the
-              Asia-Pacific region.
-            </p>{" "}
-            <br />
-            <button>MEET OUR CONSULTANTS</button>
-          </div>
+          <Fade left>
+            <div className="left">
+              <h3>
+                <Zoom left cascade>
+                  OVER 100 MULTI-DISCIPLINARY <br /> SPECIALISTS
+                </Zoom>
+              </h3>
+              <br />
+              <p>
+                State of the art technology and expertise combined with the
+                support of our friendly staff, we strive each day to be the top
+                healthcare provider, not only in Bangladesh but within the
+                Asia-Pacific region.
+              </p>{" "}
+              <br />
+              <button>MEET OUR CONSULTANTS</button>
+            </div>
+          </Fade>
+
           <div className="right">
             <Swiper
               slidesPerView={1}

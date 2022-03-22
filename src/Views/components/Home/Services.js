@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MainLayout } from "../../../styles/Layout";
 import Spinner from "../custom/Spinner";
 import Service from "./Service";
+import Fade from "react-reveal/Fade";
 
 const Services = () => {
   const [page, setPage] = useState(0);
@@ -28,15 +29,17 @@ const Services = () => {
     <ServicesStyled>
       <MainLayout>
         <h1>Services</h1>
-        <div className="services">
-          {services.length ? (
-            services?.map((service) => (
-              <Service key={service._id} service={service} />
-            ))
-          ) : (
-            <Spinner />
-          )}
-        </div>
+        <Fade left>
+          <div className="services">
+            {services.length ? (
+              services?.map((service) => (
+                <Service key={service._id} service={service} />
+              ))
+            ) : (
+              <Spinner />
+            )}
+          </div>
+        </Fade>
         <div className="pagination">
           {[...Array(pageCount).keys()].map((number) => (
             <button

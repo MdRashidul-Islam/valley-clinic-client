@@ -5,18 +5,20 @@
   list-style: none;
   text-decoration: none;
 
-  ::-webkit-scrollbar {
-    width: 5px;
-    background-color: #fff8f5;
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-    background-color: #00a187;
-  }
-  ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #fff8f5;
-  }
+  
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #fff8f5;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #00a187;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #fff8f5;
 }
 
 body {
