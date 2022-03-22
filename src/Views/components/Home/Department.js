@@ -7,7 +7,7 @@ const Department = ({ img, title, description }) => {
       <div className="department">
         <img src={img} alt="" />
         <br />
-        <h5>{title}</h5>
+        <h5 style={{ textAlign: "center" }}>{title}</h5>
         <br />
         <div className="hr">
           <hr />

@@ -31,7 +31,7 @@ const AddService = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3 style={{ textAlign: "center", color: "#6FCFCF" }}>ADD SERVICE</h3>
         <input
-          {...register("serviceName", { required: true })}
+          {...register("title", { required: true })}
           placeholder="SERVICE NAME"
         />
         <input {...register("img", { required: true })} placeholder="IMG URL" />

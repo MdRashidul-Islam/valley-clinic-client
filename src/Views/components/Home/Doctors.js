@@ -12,8 +12,6 @@ import Fade from "react-reveal/Fade";
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
 
-  console.log(doctors);
-
   useEffect(() => {
     fetch("https://mysterious-caverns-18186.herokuapp.com/doctors")
       .then((res) => res.json())

@@ -64,9 +64,7 @@ const useFirebase = () => {
   //---------register User end-----------------//
 
   const verifyEmail = () => {
-    sendEmailVerification(auth.currentUser).then((res) => {
-      console.log(res);
-    });
+    sendEmailVerification(auth.currentUser).then((res) => {});
   };
 
   //-------------login with email password start--------------//
@@ -166,7 +164,7 @@ const useFirebase = () => {
   // save user state
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
-    console.log(user);
+
     fetch("https://mysterious-caverns-18186.herokuapp.com/users", {
       method: method,
       headers: {

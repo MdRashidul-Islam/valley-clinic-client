@@ -75,7 +75,6 @@ const CheckoutForm = ({ bookedAppointment }) => {
         }
       });
       setSuccess(true);
-      // console.log(paymentMethod);
     }
     //payment intent
     const { paymentIntent, error: intentError } =

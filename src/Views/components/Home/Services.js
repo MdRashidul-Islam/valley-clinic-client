@@ -23,8 +23,6 @@ const Services = () => {
       });
   }, [page]);
 
-  console.log(services);
-
   return (
     <ServicesStyled>
       <MainLayout>

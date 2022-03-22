@@ -16,7 +16,6 @@ import Swal from "sweetalert2";
 const ManageAllService = () => {
   const [services, setServices] = useState([]);
   const [reload, setReload] = useState(true);
-  console.log(services);
 
   useEffect(() => {
     fetch("https://mysterious-caverns-18186.herokuapp.com/services")
